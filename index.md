@@ -1,6 +1,6 @@
 ## 欢迎来到《给萌妹子看的代数书：Galois男神我爱你》主页
 
-可在[https://github.com/zhangyutong926/algebra-for-cute-girls](https://github.com/zhangyutong926/algebra-for-cute-girls)查看代码。
+可在[https://github.com/zhangyutong926/algebra-for-cute-girls/tree/writing](https://github.com/zhangyutong926/algebra-for-cute-girls/tree/writing)查看代码。
 
 可在[http://139.9.34.28:8080/job/algebra-for-cute-girls/lastCompletedBuild/artifact/algebra-for-cute-girls.pdf](http://139.9.34.28:8080/job/algebra-for-cute-girls/lastCompletedBuild/artifact/algebra-for-cute-girls.pdf)查看最新版本的书籍。
 
