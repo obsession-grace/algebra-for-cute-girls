@@ -1,10 +1,20 @@
-\documentclass[cyan,cn,11pt,base=hide,AutoFakeBold]{elegantbook}
+\documentclass[cyan,cn,11pt,base=hide,AutoFakeBold,twoside]{elegantbook}
 \usepackage{graphicx}
 \graphicspath{{./}{../}{images/}{../images/}}
 \usepackage{subfiles}
 \usepackage{multicol}
 \usepackage{tikz-cd}
 \geometry{a4paper,top=15mm,bottom=15mm,headheight=2.17cm,headsep=4mm,footskip=12mm,left=15mm,right=15mm}
+%% \fancy@setoffs changed name to \f@nch@setoff at some point.
+%% Checking whether \f@nch@setoff exists - if not we define it to be the old \fancy@setoffs:
+\makeatletter
+\ifcsname f@nch@setoffs\endcsname\else%
+%% If \fancy@setoffs does not exis, then we assume old version define it to be
+  %% fancy@setoffs, which is the old name for it:
+\let\f@nch@setoffs\fancy@setoffs
+\fi
+% This is to accommodate fancyhdr with the new geometry
+\f@nch@setoffs
 \title{给萌妹子看的代数书}
 \subtitle{Galois男神我爱你}
 \author{Sayako Hoshimiya}
