@@ -9,3 +9,8 @@ Telegram群是[https://t.me/sayako_book_writing](https://t.me/sayako_book_writin
 要加入写书的话也请先加群然后告诉我呀~
 
 喵！
+
+---
+或许你也可以用这个在线看（但是或许不能用……）：
+
+<iframe src="http://139.9.34.28:8080/job/algebra-for-cute-girls/lastSuccessfulBuild/artifact/algebra-for-cute-girls.pdf"></iframe>
