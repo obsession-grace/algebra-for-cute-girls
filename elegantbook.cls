@@ -410,6 +410,10 @@
     },
 }
 
+\newtcbtheorem[auto counter,number within=chapter]{axiom}{
+	\ifdefstring{\ELEGANT@lang}{en}{Axiom}{公理}
+}{defstyle}{def}
+
 \newtcbtheorem[auto counter,number within=chapter]{definition}{
 	\ifdefstring{\ELEGANT@lang}{en}{Definition}{定义}
 }{defstyle}{def}

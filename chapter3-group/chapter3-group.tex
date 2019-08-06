@@ -4,10 +4,36 @@
 \setcounter{chapter}{2}
 \chapter{群论}
 \section{群}
+\subsection{群}
 \begin{exercise}\label{exe:order_and_cyclic_subgroup}
 证明：若$g\in G$，则$g$的阶数是$|\langle g\rangle|$。
 \end{exercise}
-\section{子群和商群}
+\subsection{交换群}
+\subsection{自由群}
+我们可以给任意集合一个群非交换群结构和一个交换群结构，前者通过将集合元素作为字元将其排成有限序列，后者将集合元素赋予整系数。
+\begin{definition}{自由群}{free_group}
+对于任意集合$S$，定义集合$K=\bigcup_{n\in\mathbb{N}_{\geq0}}(S\times\{1,-1\})^n$，定义$a\sim b$当且仅当对$a$和$b$进行如下算法$\Psi:K\to K$后相等。自由群元素的规约算法的定义是：
+\begin{itemize}
+    \item 在第$n$次过程中，对于$x_n=((s_1,\sigma_1),\dots,(s_n,\sigma_2))$，若存在一个$1\leq i<n$使得$s_i=s_{i+1}$且$\sigma_i=-\sigma_{i+1}$，则取第一个这样的$i$，并记\footnote{元素上方的抑扬符代表从有序对中移除此元素。}$x_{n-1}=((s_1,\sigma_1),\dots,\widehat{(s_i,\sigma_i)},\widehat{(s_{i+1},\sigma_{i+1})},\dots,(s_n,\sigma_n))$；若这样的$i$不存在，则算法结束，$\Psi(x)=x_n$；
+    \item 在第一次过程中，设$x_n=x$。
+\end{itemize}
+定义$S$生成的\textbf{自由群}为$\free(S)=K/\sim$，该群有如下结构。
+\begin{itemize}
+    \item 乘法：$((s_1,\sigma_1),\dots,(s_n,\sigma_n))\cdot((t_1,\tau_1),\dots,(t_m,\tau_m))=((s_1,\sigma_1),\dots,(s_n,\sigma_n),(t_1,\tau_1),\dots,(t_m,\tau_m))$；
+    \item 单位元：$1=()$；
+    \item 逆元：$((s_1,\sigma_1),\dots,(s_n,\sigma_n))^{-1}=((s_n,-\sigma_n),\dots,(s_1,-\sigma_1))$。
+\end{itemize}
+\end{definition}
+\begin{exercise}
+请证明自由群元素的规约算法总会在有限步内结束。
+\end{exercise}
+\begin{exercise}
+请证明如上定义的$\sim$是一个等价关系。
+\end{exercise}
+\begin{exercise}
+请验证自由群的各项性质，例如结合律、单位元、逆元。
+\end{exercise}
+\subsection{子群和商群}
 \begin{exercise}\label{exe:coset_equirel_partition}
 若$a\sim b$当且仅当存在某$x$使得$a,b\in xH$，证明$\sim$是一个等价关系。
 \end{exercise}
@@ -20,11 +46,13 @@
 \begin{proposition}{Cauchy定理}{cauchy}
 
 \end{proposition}
+\subsection{选择公理初步}
+接下来我们介绍ZFC公理化集合论中的一个重要公理------第九公理选择公理。我们将证明选择公理与广义形式的Lagrange定理的等价性。
+\begin{axiom}{选择公理}{axiom_of_choice}
+\end{axiom}
 \begin{theorem}{广义Lagrange定理}{generalized_lagrange}
-若$H$是$G$的子群，存在双射$k:(G:H)\times H\bijection G$，使得$k([g],h)\subseteq[g]$
+若$H$是$G$的子群，则存在双射$k:(G:H)\times H\bijection G$，使得$k([g],h)\subseteq[g]$。前述命题与选择公理等价
 \end{theorem}
-\section{交换群}
-\section{自由群}
 \section{群论主要结论}
 \subsection{Sylow定理}
 \begin{introduction}
@@ -37,7 +65,8 @@
 \begin{definition}{群的作用}{group_action}
 若$G$是一群，$S$是一集合，称群同态$\pi:G\to\operatorname{Perm}(S)$为$G$在$S$上的一个\textbf{作用}。
 \end{definition}
-群的作用的另一种写法更加自然，我们写$g\cdot s=\pi(g)(s)$。
+\begin{remark}
+群的作用的另一种写法更加自然，我们写$g\cdot s=\pi(g)(s)$。\end{remark}
 \begin{exercise}
 请读者验证：
 \begin{enumerate}
