@@ -634,7 +634,7 @@
 \fancyhead[L]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\rightmark}
 \fi
 
-\fancyfoot[c]{\ifdefstring{\ELEGANT@base}{hide}{}{\catcode`\$=3\relax\base{structurecolor}{88}}}
+% \fancyfoot[c]{\ifdefstring{\ELEGANT@base}{hide}{}{\catcode`\$=3\relax\base{structurecolor}{88}}}
 \renewcommand{\headrule}{\color{structurecolor}\hrule width\textwidth}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{1pt}
