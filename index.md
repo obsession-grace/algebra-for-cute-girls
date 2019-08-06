@@ -2,7 +2,7 @@
 
 可在[https://github.com/zhangyutong926/algebra-for-cute-girls](https://github.com/zhangyutong926/algebra-for-cute-girls)查看代码。
 
-可在[http://139.9.34.28:8080/job/algebra-for-cute-girls/lastSuccessfulBuild/artifact/algebra-for-cute-girls.pdf](http://139.9.34.28:8080/job/algebra-for-cute-girls/lastSuccessfulBuild/artifact/algebra-for-cute-girls.pdf)查看最新版本的书籍。
+可在[http://139.9.34.28:8080/job/algebra-for-cute-girls/lastCompletedBuild/artifact/algebra-for-cute-girls.pdf](http://139.9.34.28:8080/job/algebra-for-cute-girls/lastCompletedBuild/artifact/algebra-for-cute-girls.pdf)查看最新版本的书籍。
 
 Telegram群是[https://t.me/sayako_book_writing](https://t.me/sayako_book_writing)。
 
@@ -13,4 +13,4 @@ Telegram群是[https://t.me/sayako_book_writing](https://t.me/sayako_book_writin
 ---
 或许你也可以用这个在线看（但是或许不能用……）：
 
-<iframe src="http://139.9.34.28:8080/job/algebra-for-cute-girls/lastSuccessfulBuild/artifact/algebra-for-cute-girls.pdf"></iframe>
+<iframe src="http://139.9.34.28:8080/job/algebra-for-cute-girls/lastCompletedBuild/artifact/algebra-for-cute-girls.pdf"></iframe>
