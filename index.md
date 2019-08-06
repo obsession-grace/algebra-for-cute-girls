@@ -13,6 +13,4 @@ Telegram群是[https://t.me/sayako_book_writing](https://t.me/sayako_book_writin
 ---
 或许你也可以用这个在线看（但是或许不能用……）：
 
-<object data="http://139.9.34.28:8080/job/algebra-for-cute-girls/lastCompletedBuild/artifact/algebra-for-cute-girls.pdf" type="application/pdf">
-    <embed src="http://139.9.34.28:8080/job/algebra-for-cute-girls/lastCompletedBuild/artifact/algebra-for-cute-girls.pdf" type="application/pdf" />
-</object>
+<object data="http://139.9.34.28:8080/job/algebra-for-cute-girls/lastCompletedBuild/artifact/algebra-for-cute-girls.pdf" width="90$" height="500" type='application/pdf'/>
