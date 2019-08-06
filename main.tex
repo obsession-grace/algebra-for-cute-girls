@@ -1,0 +1,33 @@
+\documentclass[cyan,cn,11pt,base=hide,AutoFakeBold]{elegantbook}
+\usepackage{graphicx}
+\graphicspath{{./}{../}{images/}{../images/}}
+\usepackage{subfiles}
+\usepackage{multicol}
+\usepackage{tikz-cd}
+\geometry{a4paper,top=15mm,bottom=15mm,headheight=2.17cm,headsep=4mm,footskip=12mm,left=15mm,right=15mm}
+\title{给萌妹子看的代数书}
+\subtitle{Galois男神我爱你}
+\author{Sayako Hoshimiya}
+\institute{Sayako的文学和数学社}
+\date{\today}
+\extrainfo{L'algèbre est genereuse, elle donne souvent plus qu'on lui demande. --- Jean le Rond d'Alembert}
+\logo{logo.png}
+\cover{cover.jpg}
+\newcommand{\qed}{$\square$}
+% TODO 这里想要一个可爱一点的配色……
+% \definecolor{structurecolor}{RGB}{65,105,225}
+% \definecolor{main}{RGB}{255,182,193}
+% \definecolor{second}{RGB}{255,0,255}
+% \definecolor{third}{RGB}{0,255,255}
+\begin{document}
+\maketitle
+\tableofcontents
+\mainmatter
+\hypersetup{pageanchor=true}
+\input{./predefs/predefs.tex}
+\subfile{./outline/outline.tex}
+% 这里是留给chapter 1和2的，所以先直接把counter设置到3
+\setcounter{chapter}{2}
+\subfile{./chapter3-group/chapter3-group.tex}
+\subfile{./bibliography/bibliography.tex}
+\end{document}

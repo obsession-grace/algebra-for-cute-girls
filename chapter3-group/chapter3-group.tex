@@ -1,0 +1,114 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\chapter{群论}
+\section{群}
+\begin{exercise}\label{exe:order_and_cyclic_subgroup}
+证明：若$g\in G$，则$g$的阶数是$|<g>|$。
+\end{exercise}
+\section{子群和商群}
+\begin{exercise}\label{exe:coset_equirel_partition}
+若$a\sim b$当且仅当存在某$x$使得$a,b\in xH$，证明$\sim$是一个等价关系。
+\end{exercise}
+\begin{proposition}{Lagrange定理}{lagrange}
+若$H$是$G$的子群，且$G$是有限群，则$|H|$整除$G$。
+\end{proposition}
+\begin{exercise}
+使用\ref{exe:coset_equirel_partition}，证明Lagrange定理。提示：构造陪集间的双射。
+\end{exercise}
+\begin{theorem}{广义Lagrange定理}{generalized_lagrange}
+若$H$是$G$的子群，存在双射$k:(G:H)\times H\bijection G$，使得$k([g],h)\subseteq[g]$
+\end{theorem}
+\section{交换群}
+\section{自由群}
+\section{群论主要结论}
+\subsection{Sylow定理}
+\begin{introduction}
+\item 群的作用
+\item $p$-子群
+\item Sylow定理
+\item Sylow定理的应用
+\end{introduction}
+\subsubsection{群的作用}
+\begin{definition}{群的作用}{group_action}
+若$G$是一群，$S$是一集合，称群同态$\pi:G\to\operatorname{Perm}(S)$为$G$在$S$上的一个\textbf{作用}。
+\end{definition}
+群的作用的另一种写法更加自然，我们写$g\cdot s=\pi(g)(s)$。
+\begin{exercise}
+请读者验证：
+\begin{enumerate}
+    \item $\forall x,y\in G,\,s\in S.\,(xy)\cdot s=x\cdot(y\cdot s)$；
+    \item $\forall s\in S.\,1\cdot s=s$。
+\end{enumerate}
+反过来，若定义映射$\pi(g)(s)=g\cdot s$，则$\pi$是一个群作用。
+\end{exercise}
+因此，我们将交换使用这两种写法。另外若所讨论的作用根据上下文明确，我们将不会显式提及。
+\begin{definition}{共轭}{group_conjugation}
+对任意$x\in G$，定义$c_x:G\to G:y\mapsto xyx^{-1}$。请自行验证$c_{-}:G\to\automorphism(G)\subset\permutation(G)$为一同态。因此这样定义的$c$是一个$G$在$G$上的作用，被称为\textbf{共轭}。
+\end{definition}
+我们使用上标写法来书写共轭,即${}^xy=xyx^{-1}$和$y^x=x^{-1}yx$。$G$也在$G$的幂集上有作用：设$S=\mathcal{P}(G)$，若$A\in S$，则$xAx^{-1}\in S$。若存在$x\in G$使得$A,B\in S$满足$A=xBx^{-1}$，则称$A$和$B$共轭。
+\begin{definition}{等方性群}{isotropy_group}
+定义$\isotropy_G(s)=\{x\in G\,|\,x\cdot s=s\}，$不难验证$\isotropy_G(s)\leq G$，被称为$s$在$G$中的\textbf{等方性群}。
+\end{definition}
+\begin{exercise}
+证明：$G$作用于$S$，若$s,s'\in S$且存在$y\in G$使得$y\cdot s=s'$，那么$\isotropy_G(s)$与$\isotropy_{s'}(G)$共轭。
+\end{exercise}
+\begin{exercise}
+证明：$\displaystyle K=\ker(\pi:G\to\operatorname{Perm}(S))=\bigcap_{s\in S}\isotropy_G(s)$
+\end{exercise}
+\begin{definition}{轨道}{action_orbit}
+若$G$作用于$S$，定义$s$在$G$下的轨道为$\orbit_G(s)=\{xs\,|\,x\in G\}$。
+\end{definition}
+关于有限群$G$，我们有
+\begin{proposition}{}{lang_5_1}
+若$G$作用于$S$，$s\in S$，那么$|\orbit_G(s)|=(G:\isotropy_G(s))$。
+\end{proposition}
+\begin{proof}
+定义$f(g)=g\cdot s$，则根据定义$\ker f=\isotropy_G(s)$。根据第一群同构定理（见下图），可得$G/\isotropy_G(s)\simeq\im f=\orbit_G(s)$，得证。
+$$\begin{tikzcd}
+G \arrow[rdd, "\varphi", hook] \arrow[rr, "f", two heads] & {} & \im f=\orbit_G(s) \\ {} & {} & {}\\ {} & G/\ker f=G/\isotropy_G(s) \arrow[ruu, "f_*", two heads, dotted, hook] & {}
+\end{tikzcd}$$
+\qed
+\end{proof}
+\begin{theorem}{轨道分解公式}{orbit_decomposition_formula}
+若有限群$G$作用于$S$，$I$为一指标集，使得对于$i\neq j$有$\orbit_G(s_i)\cap\orbit_G(s_j)=\emptyset$，则有\textbf{轨道分解公式}$\displaystyle\operatorname{card}(S)=\sum_{i\in I}(G:\orbit_G(s_i))$。
+\end{theorem}
+\begin{proof}
+首先证明有$\orbit_G(s_i)\cap\orbit_G(s_j)=\emptyset$或$\orbit_G(s_i)=\orbit_G(s_j)$成立。若$\orbit_G(s_i)\cap\orbit_G(s_j)=\{s,\dots\}$，则存在$x$使得$s=x\cdot s_i$，因此$\orbit_G(s)=\orbit_G(x\cdot s_i)=\orbit_G(s_i)$。类似地，我们有$\orbit_G(s)=\orbit_G(s_j)$，两轨道相等。因此，$S$是不同轨道的不交并，即$\displaystyle S=\coprod_{i\in I}\orbit_G(s_i)$。等式两边取基数，定理得证。\qed
+\end{proof}
+\begin{corollary}{共轭类公式}{class_formula}
+在定理\ref{thm:orbit_decomposition_formula}中，取$S=G$，$G$以共轭作用于$G$本身，则轨道分解公式可被写成$\displaystyle|G|=\sum_{x\in C}(G:\orbit_G(x))$，其中$C$为不同共轭类的代表元。
+\end{corollary}
+\begin{proof}
+若存在$g\in G$使得$a=gbg^{-1}$，则$(bgb^{-1}g^{-1})\cdot a=1\cdot b\in\orbit_G(a)\cap\orbit_G(b)$，根据定理\ref{thm:orbit_decomposition_formula}证明中论证，$\orbit_G(a)=\orbit_G(b)$。又由于共轭为一等价关系（请自行验证），对于任一轨道$\orbit_G(x)$，有$x\in[c]$，其中$c\in C$。设$I=C$，$s_i=i$，则$I$为满足定理\ref{thm:orbit_decomposition_formula}的指标集，推论得证。\qed
+\end{proof}
+\subsubsection{$p$-群}
+\begin{definition}{$p$-群}{p_group}
+若$p$为一个素数，且存在$n\geq0$使得$|G|=p^n$则称$G$为\textbf{$\mathbf{p}$-群}；若$G$是某群的子群，则称其为\textbf{$\mathbf{p}$-子群}。
+\end{definition}
+\begin{proposition}{}{equidef_p_group}
+$G$是一$p$-群当且仅当若对于每个$g\in G$，存在一个最小的$m\geq0$，使得$g^{(p^m)}=1$。
+\end{proposition}
+\begin{proof}
+$(\implies)$对于任意的$g\in G$，其循环$\langle g\rangle$是$G$的一个子群。根据Lagrange定理（定理\ref{pro:lagrange}），$x=|\langle g\rangle|$整除$|G|$，由于$|G|=p^n$，$x=p^m$其中$0\leq m\leq n$。根据练习\ref{exe:order_and_cyclic_subgroup}，$g$的阶数为$x$。
+\end{proof}
+\begin{lemma}{$p$-子群引理}{lang_6_1}
+\end{lemma}
+\begin{lemma}{$p$-群不动点引理}{lang_6_3}
+\end{lemma}
+\subsubsection{Sylow定理}
+
+\subsection{Schreier-Zassenhaus定理}
+\subsection{Nielsen-Schreier定理}
+\section{有限群的表示}
+\section{范畴论初步}
+\subsection{群的直积和直和}
+\subsection{范畴和函子}
+\subsection{积和余积}
+\subsection{推出和拉回}
+\section{同调论}
+\subsection{同调群}
+\subsection{欧拉示性数}
+\subsection{分解}
+\subsection{导出函子}
+\subsection{谱序列}
+\end{document}
