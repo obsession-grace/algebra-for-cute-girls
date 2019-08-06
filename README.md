@@ -3,6 +3,8 @@
 
 欢迎来到《给萌妹子看的代数书：Galois男神我爱你》的小仓库~
 
+然后这里有个小badge：[![Build Status](http://139.9.34.28:8080/buildStatus/icon?job=algebra-for-cute-girls)](http://139.9.34.28:8080/job/algebra-for-cute-girls/)
+
 你可能发现了这里只有一个Github Pages页面的源代码，那是因为书的源代码在[writing分支](https://github.com/zhangyutong926/algebra-for-cute-girls/tree/writing)里面。所以你要用
 ```bash
 git clone -b writing https://github.com/zhangyutong926/algebra-for-cute-girls.git
