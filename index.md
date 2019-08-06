@@ -1,37 +1,11 @@
-## Welcome to GitHub Pages
+## 欢迎来到《给萌妹子看的代数书：Galois男神我爱你》主页
 
-You can use the [editor on GitHub](https://github.com/zhangyutong926/algebra-for-cute-girls/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+可在[https://github.com/zhangyutong926/algebra-for-cute-girls](https://github.com/zhangyutong926/algebra-for-cute-girls)查看代码。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+可在[http://139.9.34.28:8080/job/algebra-for-cute-girls/lastSuccessfulBuild/artifact/algebra-for-cute-girls.pdf](http://139.9.34.28:8080/job/algebra-for-cute-girls/lastSuccessfulBuild/artifact/algebra-for-cute-girls.pdf)查看最新版本的书籍。
 
-### Markdown
+Telegram群是[https://t.me/sayako_book_writing](https://t.me/sayako_book_writing)。
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+要加入写书的话也请先加群然后告诉我呀~
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/zhangyutong926/algebra-for-cute-girls/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+喵！
