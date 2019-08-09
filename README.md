@@ -16,5 +16,5 @@ git push origin writing:writing
 
 你需要MikTeX或MacTeX或TeX Live来编译这个文档，如果找不到`gb7714.sty`的话可能还需要手动安装一下，不会的话来问我呀（联系方式在下面↓）。编译的指令是`xelatex -> bibtex -> xelatex * 2`。当然如果你是collaborator的话你直接提交用我的[Jenkins CI](http://vps.sayako.blog:8080/)来编译然后看artifacts也可以啦。
 
-然后是Telegram群：https://t.me/sayako_book_writing
-以及Sayako的telegram：https://t.me/zhangyutong926
+然后是Telegram群：[https://t.me/sayako_book_writing](https://t.me/sayako_book_writing)（群里有可爱的Github Bot和Jenkins Bot哦qwq）  
+以及Sayako的telegram：[https://t.me/zhangyutong926](https://t.me/zhangyutong926)
