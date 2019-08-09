@@ -26,12 +26,16 @@
 \begin{document}
 \def\biblio{}
 \maketitle
+\subfile{./preface/preface.tex}
 \tableofcontents
 \mainmatter
 \hypersetup{pageanchor=true}
 \subfile{./outline/outline.tex}
 % 这里是留给chapter 1和2的，所以先直接把counter设置到3
-\subfile{./chapter3-group/chapter3-group.tex}
+\subfile{./chapter1-introduction/chapter1-introduction.tex}
+\subfile{./chapter2-category-theory/chapter2-category-theory.tex}
+\subfile{./chapter3-linear-algebra/chapter3-linear-algebra.tex}
+\subfile{./chapter4-group-theory/chapter4-group-theory.tex}
 \nocite{*}
 \bibliography{\main/bibliography/bibliography}
 \end{document}
