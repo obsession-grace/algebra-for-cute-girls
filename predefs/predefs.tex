@@ -13,3 +13,9 @@
 \newcommand{\divides}{\mathbin{\big|}}
 \newcommand{\sepbar}{\mathbin{|}}
 \newcommand{\cardinality}{\operatorname{Card}}
+
+\DeclareFontFamily{OMX}{yhex}{}
+\DeclareFontShape{OMX}{yhex}{m}{n}{<->yhcmex10}{}
+\DeclareSymbolFont{yhlargesymbols}{OMX}{yhex}{m}{n}
+\DeclareMathAccent{\wideparen}{\mathord}{yhlargesymbols}{"F3}
+\newcommand{\WIDEPAREN}[1]{\wideparen{#1}}
