@@ -3,10 +3,6 @@
 \begin{document}
 \setcounter{chapter}{3}
 \chapter{群论}
-\section{范畴论}
-\subsection{范畴和函子}
-\subsection{范畴论构造}
-\subsection{泛性质}
 \section{群}
 \subsection{群}
 \begin{exercise}\label{exe:order_and_cyclic_subgroup}
@@ -83,7 +79,7 @@ G \arrow[rdd, "\varphi", hook] \arrow[rr, "f", two heads] & {} & \im f=\orbit_G(
 \qed
 \end{proof}
 \begin{theorem}{轨道分解公式}{orbit_decomposition_formula}
-若有限群$G$作用于$S$，$I$为一指标集，使得对于$i\neq j$有$\orbit_G(s_i)\cap\orbit_G(s_j)=\emptyset$，则有\textbf{轨道分解公式}$\displaystyle\operatorname{card}(S)=\sum_{i\in I}(G:\orbit_G(s_i))$。
+若有限群$G$作用于$S$，$I$为一指标集，使得对于$i\neq j$有$\orbit_G(s_i)\cap\orbit_G(s_j)=\emptyset$，则有\textbf{轨道分解公式}$\displaystyle\cardinality(S)=\sum_{i\in I}(G:\orbit_G(s_i))$。
 \end{theorem}
 \begin{proof}
 首先证明有$\orbit_G(s_i)\cap\orbit_G(s_j)=\emptyset$或$\orbit_G(s_i)=\orbit_G(s_j)$成立。若$\orbit_G(s_i)\cap\orbit_G(s_j)=\{s,\dots\}$，则存在$x$使得$s=x\cdot s_i$，因此$\orbit_G(s)=\orbit_G(x\cdot s_i)=\orbit_G(s_i)$。类似地，我们有$\orbit_G(s)=\orbit_G(s_j)$，两轨道相等。因此，$S$是不同轨道的不交并，即$\displaystyle S=\coprod_{i\in I}\orbit_G(s_i)$。等式两边取基数，定理得证。\qed
@@ -93,6 +89,15 @@ G \arrow[rdd, "\varphi", hook] \arrow[rr, "f", two heads] & {} & \im f=\orbit_G(
 \end{corollary}
 \begin{proof}
 若存在$g\in G$使得$a=gbg^{-1}$，则$(bgb^{-1}g^{-1})\cdot a=1\cdot b\in\orbit_G(a)\cap\orbit_G(b)$，根据定理\ref{thm:orbit_decomposition_formula}证明中论证，$\orbit_G(a)=\orbit_G(b)$。又由于共轭为一等价关系（请自行验证），对于任一轨道$\orbit_G(x)$，有$x\in[c]$，其中$c\in C$。设$I=C$，$s_i=i$，则$I$为满足定理\ref{thm:orbit_decomposition_formula}的指标集，推论得证。\qed
+\end{proof}
+\begin{exercise}\label{exe:orbit_equirel}
+定义$a\sim b$当且仅当$a\in\orbit_G(b)$，请验证$\sim$是一个等价关系。
+\end{exercise}
+\begin{theorem}{轨道分割公式}{partition_formula}
+若有限群$G$作用于$S$，$I$为一指标集，使得对于$i\neq j$有$\orbit_G(s_i)\cap\orbit_G(s_j)=\emptyset$，则有\textbf{轨道分割公式}$\displaystyle\cardinality(S)=\sum_{i\in I}|\orbit_G(s_i)|$，注意将此公式与轨道分解公式（定理\ref{thm:orbit_decomposition_formula}）进行区分。
+\end{theorem}
+\begin{proof}
+根据练习\ref{exe:orbit_equirel}显然。\qed
 \end{proof}
 \subsection{子群和商群}
 \subsubsection{正规子群和商群}
@@ -107,11 +112,11 @@ G \arrow[rdd, "\varphi", hook] \arrow[rr, "f", two heads] & {} & \im f=\orbit_G(
 \begin{exercise}
 使用\ref{exe:coset_equirel_partition}，证明Lagrange定理。提示：构造陪集间的双射。
 \end{exercise}
-\begin{proposition}{Cauchy定理}{cauchy}
+\begin{theorem}{Cauchy定理}{cauchy}
 若$G$是一有限群，$p$是一素数且$p\divides|G|$，则存在一个阶数为$p$的$g\in G$。
-\end{proposition}
+\end{theorem}
 \begin{proof}
-设$n=|G|$，定义$\displaystyle X=\{(a_1,\dots,a_p)\in G^p:\prod_{i=1}^pa_i=1\}$。我们可以简单地计算$X$的元素个数。我们将$G$中元素编号：$g_1,\dots,g_n$，对于每个$(a_1,\dots,a_p)\in X$，将前$p-1$个元素写成$g_{i_1},\dots,g_{i_{[-1}}$，那么最后一个元素便被确定。由此我们得到一个双射$X\bijection\{1,\dots,n\}^{p-1}$，并得到$X=n^{p-1}$。设$C_p=\langle c\sepbar c^p=1\rangle$，定义运算$c\cdot(a_1,\dots,a_p)=(a_2,\dots,a_p,a_1)$，使得$C_p$作用于$X$。根据轨道-等方性定理（命题\ref{pro:orbit_stabilizer}）以及Lagrange定理（定理\ref{pro:lagrange}），可知$|\orbit_G(x)|=(G:\isotropy_G(x))\divides|G|=p$对所有$x\in X$成立。由于$p$是素数，任何轨道要么有$p$个元素，要么只有$1$个元素。设只有$1$个元素的不同轨道的数量是$r$，有$p$个元素的不同轨道的数量是$s$，根据轨道分解公式（定理\ref{thm:orbit_decomposition_formula}），$rn+\frac{sn}{p}=n(r+\frac{n}{p})=|X|=n^{p-1}$，根据前提$p\divides n$，写$n=ap$，可将前式化为$s=p(ap^{p-2}-r)$，即$p\divides s$。注意到不同轨道的数量不可能大于$|X|$（最大的情况是每个$x\in X$生成一个不同的轨道），又因$(1,\dots,1)\in X$所生成的轨道只含有$1$个元素，所以$s\leq n^{p-1}-1$。再注意到$p\divides n^{p-1}$，因此$n^{p-1}-p<s<n^{p-1}$不可能成立（两个相差$p$的整数之间再无被$p$整除的整数），所以我们有$s\leq n^{p-1}-p$。写$r=a^{p-2}p^{p-2}-\frac{s}{p}$，讨论$\frac{s}{p}$是否被$p$整除，若是，则$p\divides r$，而已知$r\geq1,p\geq2$，可得$r\geq2$；若否，
+设$n=|G|$，定义$\displaystyle X=\{(a_1,\dots,a_p)\in G^p:\prod_{i=1}^pa_i=1\}$。我们可以简单地计算$X$的元素个数。我们将$G$中元素编号：$g_1,\dots,g_n$，对于每个$(a_1,\dots,a_p)\in X$，将前$p-1$个元素写成$g_{i_1},\dots,g_{i_{[-1}}$，那么最后一个元素便被确定。由此我们得到一个双射$X\bijection\{1,\dots,n\}^{p-1}$，并得到$X=n^{p-1}$。设$C_p=\langle c\sepbar c^p=1\rangle$，定义运算$c\cdot(a_1,\dots,a_p)=(a_2,\dots,a_p,a_1)$，使得$C_p$作用于$X$。根据轨道-等方性定理（命题\ref{pro:orbit_stabilizer}）以及Lagrange定理（定理\ref{pro:lagrange}），可知$|\orbit_G(x)|=(G:\isotropy_G(x))\divides|G|=p$对所有$x\in X$成立。由于$p$是素数，任何轨道要么有$p$个元素，要么只有$1$个元素。设只有$1$个元素的不同轨道的数量是$r$，有$p$个元素的不同轨道的数量是$s$，根据轨道分割公式（定理\ref{thm:partition_formula}），$r+sp=n^{p-1}$。根据前提$p\divides n$，可得$p\divides r$，其中$r\neq0$因为存在$(1,\dots,1)\in X$，其轨道只有$1$个元素。因此至少有$p$个只有$1$个元素的轨道，这些轨道的元素的形式只能是$(a,\dots,a)\in X$，所以可得$a^p=1$。由于$p\geq2$，至少存在一个非单位元的$a$使得$a^p=1$成立，定理得证。\qed
 \end{proof}
 \begin{remark}
 Cauchy定理也可由Sylow第一定理得出，我们将在\S\ref{subsub:sylow_theorems_applications} 中提及。
