@@ -513,11 +513,11 @@
 \setcounter{exam}{0}
 \renewcommand{\theexam}{\thechapter.\arabic{exam}}
 \newenvironment{example}[1][]{
- 		\refstepcounter{exam}\leavevmode\\*\noindent\textbf{\color{main}{%
+ 		\refstepcounter{exam}\par\noindent\textbf{\color{main}{%
  			\ifdefstring{\ELEGANT@lang}{en}{Example}{例}
  		}\theexam #1 \,}\rmfamily %
  	}{
-		\leavevmode\\*\ignorespacesafterend %
+ 		\par\medskip\ignorespacesafterend %
  	}
 
 %% Exercise with counter
@@ -525,11 +525,11 @@
 \setcounter{exer}{0}
 \renewcommand{\theexer}{\thechapter.\arabic{exer}}
 \newenvironment{exercise}[1][]{
- 		\refstepcounter{exer}\leavevmode\\*\noindent\makebox[-3pt][r]{\scriptsize\color{red!90}\HandPencilLeft\quad}\textbf{\color{main}{%
+ 		\refstepcounter{exer}\par\noindent\makebox[-3pt][r]{\scriptsize\color{red!90}\HandPencilLeft\quad}\textbf{\color{main}{%
  			\ifdefstring{\ELEGANT@lang}{en}{Exercise}{练习}
  		}\theexer #1 \,}\rmfamily %
  	}{
-		\leavevmode\\*\ignorespacesafterend %
+ 		\par\medskip\ignorespacesafterend %
  	}
 
 %% Exercise with counter

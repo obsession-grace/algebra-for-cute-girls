@@ -4,6 +4,67 @@
 \setcounter{chapter}{1}
 \chapter{范畴论}\label{cha:category_theory}
 \section{范畴和函子}
+\begin{definition}{范畴}{category}
+\textbf{范畴}$\mathcal{C}$包含以下结构。
+\begin{enumerate}
+    \item 存在一类\textbf{元素}$\operatorname{Ob}(\mathcal{C})$；
+    \item 对于每对元素$X,Y\in\operatorname{Ob}(\mathcal{C})$，存在\textbf{态射}集合$\operatorname{Mor}_\mathcal{C}(X,Y)$；
+    \item 对于每三个元素$x,y,z\in\operatorname{Ob}(\mathcal{C})$，存在态射复合映射${\circ}:\operatorname{Mor}_\mathcal{C}(Y,Z)\times\operatorname{Mor}_{\mathcal{C}}(X,Y)\to\operatorname{Mor}_\mathcal{C}(X,Z)$。
+\end{enumerate}
+这些结构满足以下规则。
+\begin{enumerate}
+    \item 对于每个元素$X\in\operatorname{Ob}(\mathcal{C})$，存在\textbf{单位态射}$\operatorname{id}_X\in\operatorname{Mor}_\mathcal{C}(X,X)$，使得$\operatorname{id}_X\circ\phi=\phi$和$\psi\circ\operatorname{id}_X=\psi$成立，其中$\phi\in\operatorname{Mor}_\mathcal{C}(Y,X)$对于任意$Y\in\operatorname{Ob}(\mathcal{C})$，$\psi\in\operatorname{Mor}_\mathcal{C}(X,Z)$对于任意$Z\in\operatorname{Ob}(\mathcal{C})$；
+    \item 复合具有结合性，即对于$\phi\in\operatorname{Mor}_\mathcal{C}(Y,Z),\psi\in\operatorname{Mor}_\mathcal{C}(X,Y),\chi\in\operatorname{Mor}_\mathcal{C}(W,X)$，有$(\phi\circ\psi)\circ\chi=\phi\circ(\psi\circ\chi)$；
+    \item 任意态射集合$\opn{Mor}_\mathcal{C}(X,Y)$和$\opn{Mor}_\mathcal{C}(X',Y')$不交，除非$X=X',Y=Y'$，此时它们相等。
+\end{enumerate}
+\end{definition}
+由于以下练习，我们讨论单位态射的时候可以省去选择，只讨论唯一的单位映射。
+\begin{exercise}{}
+证明同个元素的任意两个单位态射是相等的。
+\end{exercise}
+有时我们也会使用$\operatorname{dom}$（\textbf{域}）和$\operatorname{cod}$（\textbf{陪域}）来讨论态射。值得注意的是，我们一般情况下要求元素为一个集合而不是一个类，仅在如下范畴中我们放宽要求允许元素为一个真类：
+\begin{itemize}
+    \item 集合范畴$(\mathbf{Set})$，态射为映射；
+    \item 交换群范畴$(\mathbf{Ab})$，态射为交换群同态；
+    \item 群范畴$(\mathbf{Grp})$，态射为群同态；
+    \item 左$G$-群作用范畴$(\mathbf{G{-}Set})$，态射为$G$-映射；
+    \item 对于含幺交换环$R$，模范畴$(\mathbf{R{-}Mod})$，态射为模同态；
+    \item 对于域$F$，向量空间范畴$(\mathbf{F{-}Vect})$，态射为线性映射；
+    \item 拓扑空间范畴$(\mathbf{Top})$，态射为连续映射；
+    \item 含幺交换环范畴$(\mathbf{Ring})$，态射为环同态。
+\end{itemize}
+我们称$\opn{Ob}$为一集合的范畴\textbf{集合范畴}，称其为\textbf{真类范畴}若其$\opn{Ob}$不构成集合。
+为简化我们所使用的符号，若所讨论的范畴在上下文中没有歧义，可使用符号$\opn{Ob}$和$\opn{Mor}(X,Y)$；另对于态射$\phi\in\opn{Mor}(X,Y)$，我们通常使用映射符号将其写为$\phi:X\to Y$。
+
+\begin{definition}{范畴论同构}{categorical_isomorphism}
+对于一个态射$\phi:X\to Y$，若存在另一个态射$\psi:Y\to X$使得$\phi\circ\psi=\opn{id}_Y$和$\psi\circ\phi=\opn{id}_X$成立，则我们说它是一个范畴论同构。此时$\phi$也被称为一个可逆态射，而$\phi^{-1}=\psi$则被称为它的逆。
+\end{definition}
+若一态射的域和陪域相同，则它可被称为一个\textbf{自态射}，元素$X\in\opn{Ob}$的所有自态射形成一个幺半群，被称为$\opn{Endo}_\mathcal{C}(X)$；若它还是一个同态，则被称为\textbf{自同态}，所有元素$X$的自同态形成一个群，被称为$\opn{Auto}_\mathcal{C}(X)$。
+
+\begin{definition}{群胚}{groupoid}
+若范畴$\mathcal{C}$的所有态射都是范畴论同构，则称范畴$\mathcal{C}$为一\textbf{群胚}。
+\end{definition}
+群胚是群的一般化结构。一个群$G$可以生成一个群胚，使得其结构被保留：这个群胚由一个元素$X$构成，其仅有的态射为$\opn{Mor}(X,X)=G$，态射复合被定义为$a\circ b=ab$，请自行验证如此定义的范畴为一个群胚。集合$A$也可生成群胚，定义$$\opn{Ob}=A\quad\opn{Mor}(X,Y)=\begin{cases}\emptyset&X\neq Y\\\{\opn{id}\}&X=Y\end{cases}$$请自行验证它是一个群胚。
+
+\begin{definition}{函子}{functor}
+范畴$\mathcal{A},\mathcal{B}$间的\textbf{协变}（resp. \textbf{逆变}）\textbf{函子}$F:\mathcal{A}\to\mathcal{B}$包含以下结构。
+\begin{enumerate}
+    \item 若$\mathcal{A}$和$\mathcal{B}$均为集合范畴，则函子包含一个映射$F_{\opn{Ob}}^{\text{Set}}:\opn{Ob}(\mathcal{A})\to\opn{Ob}(\mathcal{B})$，否则函子包含一个从$\opn{Ob}(\mathcal{A})$到$\opn{Ob}(\mathcal{B})$的\textbf{关联}$F_{\opn{Ob}}^{\text{PrCl}}$；
+    \item 函子包含一个映射$F_{\opn{Mor}}:\opn{Mor}_\mathcal{C}(X,Y)\to\opn{Mor}_\mathcal{B}(F_{\opn{Ob}}^{\text{Set/PrCl}}(X),F_{\opn{Ob}}^{\text{Set/PrCl}}(Y))$\newline（resp. $F_{\opn{Mor}}:\opn{Mor}_\mathcal{C}(X,Y)\to\opn{Mor}_\mathcal{B}(F_{\opn{Ob}}^{\text{Set/PrCl}}(Y),F_{\opn{Ob}}^{\text{Set/PrCl}}(X))$），对于每个$x,y\in\opn{Ob}(A)$。
+\end{enumerate}
+函子满足如下公理。
+\begin{enumerate}
+    \item 对于任意元素$X\in\opn{Ob}(A)$，$F(\opn{id}_X)=\opn{id}_{F(x)}$；
+    \item 对于任意可复合的元素对$(\phi,\psi)$，$F(\phi\circ_\mathcal{A}\psi)=F(\phi)\circ_\mathcal{B}F(\psi)$（resp. $F(\phi\circ_\mathcal{A}\psi)=F(\psi)\circ_\mathcal{B}F(\phi)$）。
+\end{enumerate}
+\end{definition}
+我们仅考虑域和陪域为上方列出的真类范畴的具有$F_{\opn{Ob}}^{\text{PrCl}}$的函子。我们考虑的大部分范畴和函子都是\textbf{数学对象}（可用ZFC公理化集合论描述的对象）。注意态射的对应总为映射。注意若函子对象关系的类型（映射或关联）明确，我们可以将其省略。另外我们也会在语义明确时省略下标$\opn{Ob}$和$\opn{Mor}$。任何范畴$\mathcal{A}$都有一个显然的单位函子$\opn{id}_\mathcal{A}$，同时对于两个函子$F:\mathcal{A}\to\mathcal{B}$和$G:\mathcal{B}\to\mathcal{C}$，
+
+\begin{definition}{单态射和满态射}{monomorphism_and_epimorphism}
+TODO
+\end{definition}
+
+
 \section{范畴论构造}
 \section{泛性质}
 \biblio
