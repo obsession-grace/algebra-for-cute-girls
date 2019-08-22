@@ -4,11 +4,12 @@
 \setcounter{chapter}{1}
 \chapter{范畴论}\label{cha:category_theory}
 \section{范畴和函子}
+\subsection{基本概念}
 \begin{definition}{范畴}{category}
 \textbf{范畴}$\mathcal{C}$包含以下结构。
 \begin{enumerate}
     \item 存在一类\textbf{元素}$\operatorname{Ob}(\mathcal{C})$；
-    \item 对于每对元素$X,Y\in\operatorname{Ob}(\mathcal{C})$，存在\textbf{态射}集合$\operatorname{Mor}_\mathcal{C}(X,Y)$；
+    \item 对于每对元素$X,Y\in\operatorname{Ob}(\mathcal{C})$，存在一类\textbf{态射}$\operatorname{Mor}_\mathcal{C}(X,Y)$；
     \item 对于每三个元素$x,y,z\in\operatorname{Ob}(\mathcal{C})$，存在态射复合映射${\circ}:\operatorname{Mor}_\mathcal{C}(Y,Z)\times\operatorname{Mor}_{\mathcal{C}}(X,Y)\to\operatorname{Mor}_\mathcal{C}(X,Z)$。
 \end{enumerate}
 这些结构满足以下规则。
@@ -33,7 +34,7 @@
     \item 拓扑空间范畴$(\mathbf{Top})$，态射为连续映射；
     \item 含幺交换环范畴$(\mathbf{Ring})$，态射为环同态。
 \end{itemize}
-我们称$\opn{Ob}$为一集合的范畴\textbf{集合范畴}，称其为\textbf{真类范畴}若其$\opn{Ob}$不构成集合。
+我们称$\opn{Ob}$为一集合的范畴\textbf{集合范畴}，称其为\textbf{真类范畴}若其$\opn{Ob}$不构成集合。另外，若一真类范畴的每个态射类都构成集合，我们称它是一个\textbf{局部集合范畴}。
 为简化我们所使用的符号，若所讨论的范畴在上下文中没有歧义，可使用符号$\opn{Ob}$和$\opn{Mor}(X,Y)$；另对于态射$\phi\in\opn{Mor}(X,Y)$，我们通常使用映射符号将其写为$\phi:X\to Y$。
 
 \begin{definition}{范畴论同构}{categorical_isomorphism}
@@ -47,23 +48,54 @@
 群胚是群的一般化结构。一个群$G$可以生成一个群胚，使得其结构被保留：这个群胚由一个元素$X$构成，其仅有的态射为$\opn{Mor}(X,X)=G$，态射复合被定义为$a\circ b=ab$，请自行验证如此定义的范畴为一个群胚。集合$A$也可生成群胚，定义$$\opn{Ob}=A\quad\opn{Mor}(X,Y)=\begin{cases}\emptyset&X\neq Y\\\{\opn{id}\}&X=Y\end{cases}$$请自行验证它是一个群胚。
 
 \begin{definition}{函子}{functor}
-范畴$\mathcal{A},\mathcal{B}$间的\textbf{协变}（resp. \textbf{逆变}）\textbf{函子}$F:\mathcal{A}\to\mathcal{B}$包含以下结构。
+范畴$\mathcal{A},\mathcal{B}$间的\textbf{协变函子}$F:\mathcal{A}\to\mathcal{B}$包含以下结构。
 \begin{enumerate}
     \item 若$\mathcal{A}$和$\mathcal{B}$均为集合范畴，则函子包含一个映射$F_{\opn{Ob}}^{\text{Set}}:\opn{Ob}(\mathcal{A})\to\opn{Ob}(\mathcal{B})$，否则函子包含一个从$\opn{Ob}(\mathcal{A})$到$\opn{Ob}(\mathcal{B})$的\textbf{关联}$F_{\opn{Ob}}^{\text{PrCl}}$；
-    \item 函子包含一个映射$F_{\opn{Mor}}:\opn{Mor}_\mathcal{C}(X,Y)\to\opn{Mor}_\mathcal{B}(F_{\opn{Ob}}^{\text{Set/PrCl}}(X),F_{\opn{Ob}}^{\text{Set/PrCl}}(Y))$\newline（resp. $F_{\opn{Mor}}:\opn{Mor}_\mathcal{C}(X,Y)\to\opn{Mor}_\mathcal{B}(F_{\opn{Ob}}^{\text{Set/PrCl}}(Y),F_{\opn{Ob}}^{\text{Set/PrCl}}(X))$），对于每个$x,y\in\opn{Ob}(A)$。
+    \item 函子包含一个映射$F_{\opn{Mor}}:\opn{Mor}_\mathcal{C}(X,Y)\to\opn{Mor}_\mathcal{B}(F_{\opn{Ob}}^{\text{Set/PrCl}}(X),F_{\opn{Ob}}^{\text{Set/PrCl}}(Y))$，对于每个$x,y\in\opn{Ob}(A)$。
 \end{enumerate}
 函子满足如下公理。
 \begin{enumerate}
     \item 对于任意元素$X\in\opn{Ob}(A)$，$F(\opn{id}_X)=\opn{id}_{F(x)}$；
-    \item 对于任意可复合的元素对$(\phi,\psi)$，$F(\phi\circ_\mathcal{A}\psi)=F(\phi)\circ_\mathcal{B}F(\psi)$（resp. $F(\phi\circ_\mathcal{A}\psi)=F(\psi)\circ_\mathcal{B}F(\phi)$）。
+    \item 对于任意可复合的元素对$(\phi,\psi)$，$F(\phi\circ_\mathcal{A}\psi)=F(\phi)\circ_\mathcal{B}F(\psi)$。
 \end{enumerate}
 \end{definition}
-我们仅考虑域和陪域为上方列出的真类范畴的具有$F_{\opn{Ob}}^{\text{PrCl}}$的函子。我们考虑的大部分范畴和函子都是\textbf{数学对象}（可用ZFC公理化集合论描述的对象）。注意态射的对应总为映射。注意若函子对象关系的类型（映射或关联）明确，我们可以将其省略。另外我们也会在语义明确时省略下标$\opn{Ob}$和$\opn{Mor}$。任何范畴$\mathcal{A}$都有一个显然的单位函子$\opn{id}_\mathcal{A}$，同时对于两个函子$F:\mathcal{A}\to\mathcal{B}$和$G:\mathcal{B}\to\mathcal{C}$，
+我们仅考虑域和陪域为上方列出的真类范畴的具有$F_{\opn{Ob}}^{\text{PrCl}}$的函子。我们考虑的大部分范畴和函子都是\textbf{数学对象}（可用ZFC公理化集合论描述的对象）。注意态射的对应总为映射。注意若函子对象关系的类型（映射或关联）明确，我们可以将其省略。另外我们也会在语义明确时省略下标$\opn{Ob}$和$\opn{Mor}$。任何范畴$\mathcal{A}$都有一个显然的单位函子$\opn{id}_\mathcal{A}$，同时对于两个函子$F:\mathcal{A}\to\mathcal{B}$和$G:\mathcal{B}\to\mathcal{C}$，我们可以定义它们的复合。
 
-\begin{definition}{单态射和满态射}{monomorphism_and_epimorphism}
-TODO
+\textbf{TODO} opposite category and contravariant functor
+
+\textbf{TODO} natural transformation
+
+\subsection{$\opn{Hom}$函子和Yoneda定理}
+\begin{definition}{$\opn{Hom}$函子}{hom_functor_category}
+若$\mathcal{C}$是一个局部集合范畴，对于每个$A\in\mathcal{C}$，记$A$-协变$\opn{Hom}$函子为$h^A=\opn{Hom}(A,-):\mathcal{C}\to\mathbf{Set}$，其定义如下：
+\begin{itemize}
+\item 若$X\in\opn{Ob}(\mathcal{C})$，则$h^A(X)=\opn{Mor}_\mathcal{C}(A,X)\in\opn{Ob}(\mathbf{Set})$；
+\item 若$f\in\opn{Mor}_\mathcal{C}(X,Y)$，则对于$g:A\to X$，有$h^A(f)=g\mapsto f\circ g:A\to Y\in h^A(Y)$。
+\end{itemize}
+
+记$B$-逆变$\opn{Hom}$函子为$h_B=\opn{Hom}(-,B):\mathcal{C}\to\mathbf{Set}$，其定义如下：
+\begin{itemize}
+\item 若$X\in\opn{Ob}(\mathcal{C})$，则$h_A(X)=\opn{Mor}_\mathcal{C}(X,B)\in\opn{Ob}(\mathbf{Set})$；
+\item 若$f\in\opn{Mor}_\mathcal{C}(X,Y)$，则对于$g:X\to B$，有$h_A(f)=g\mapsto g\circ f:Y\to B\in h_A(Y)$。
+\end{itemize}
 \end{definition}
-
+若我们使用现代代数几何的语言，如上定义的逆变$\opn{Hom}$函子还可被称为一个\textbf{预层}。
+\begin{definition}{$\opn{Hom}$函子范畴}{hom_functor_category}
+我们使用$\mathbf{Set}^\mathcal{C}$来记协变$\opn{Hom}$函子所构成的范畴，对于每个$\mathcal{C}$中的态射$\phi:A'\to A$，我们可以获得一个自然变换$h_{\text{co}}(\phi):(h^A:\mathcal{C}\to\mathbf{Set})\Rightarrow(h^{A'}:\mathcal{C}\to\mathbf{Set})$。
+我们可以简单地看出，下图是交换的对于任意$\psi\in\opn{Mor}_\mathcal{C}(X,Y)$，于是$h_\text{co}(\phi)$的确是一自然变换。
+$$
+\begin{tikzcd}
+h^A(X) \arrow[rrr, "h_{\text{co}}(\phi)(x)"]\arrow[ddd, "h^A(\psi)"'] & {} & {} & h^{A'}(X) \arrow[ddd, "h^{A'}(\psi)"] \\ {} & f:A\to X \arrow[lu, "\in" description] & f\circ\phi:A'\to X \arrow[ru, "\in" description]&{}\\{}& \psi\circ f:A\to Y \arrow[ld, "\in" description] & \psi\circ f\circ\phi:A'\to Y \arrow[rd, "\in" description] & {} \\ h^A(Y) \arrow[rrr, "h_{\text{co}}(\phi)(y)"'] & {} & {} & h^{A'}(Y)
+\end{tikzcd}
+$$
+类似地，我们可以定义逆变$\opn{Hom}$函子所构成的范畴$\mathbf{Set}^{\mathcal{C}^\text{op}}$，唯一不同的一点是我们需要给出一个相反的映射$\phi:B\to B'$来使得下图交换。注意下图中$h_B(-)$是一逆变函子，所以关于图交换的结论是对于$\psi:Y\to X$而言的。
+$$
+\begin{tikzcd}
+h_B(X) \arrow[rrr, "h_{\text{ct}}(\phi)(x)"]\arrow[ddd, "h_B(\psi)"'] & {} & {} & h_{B'}(X) \arrow[ddd, "h_{B'}(\psi)"] \\ {} & f:X\to B \arrow[lu, "\in" description] & \phi\circ f:X\to B' \arrow[ru, "\in" description]& {} \\ {} & f\circ\psi:Y\to B \arrow[ld, "\in" description] & \phi\circ f\circ\psi:Y\to B' \arrow[rd, "\in" description] & {} \\ h_B(Y) \arrow[rrr, "h_{\text{ct}}(\phi)(y)"'] & {} & {} & h_{B'}(Y)
+\end{tikzcd}
+$$
+\end{definition}
+如上定义的$\mathbf{Set}^{\mathcal{C}^\text{op}}$在代数几何中也被记为$\mathbf{PSh}(\mathcal{C})$。
 
 \section{范畴论构造}
 \section{泛性质}

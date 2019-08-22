@@ -8,9 +8,7 @@
 %%%%%%%%%%%%%%%%%%%%%
 % % !Mode:: "TeX:UTF-8"
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{elegantbook}[2019/08/18 v3.09 ElegantBook document class]
-
-\newcommand{\disableit}[1]{}
+\ProvidesClass{elegantbook}[2019/05/26 v3.08 ElegantBook document class]
 
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
@@ -101,18 +99,16 @@
 \RequirePackage{anyfontsize}
 \ifdefstring{\ELEGANT@math}{newtxmath}{
 \RequirePackage{newtxmath}
-\RequirePackage{esint}
-%%% use yhmath pkg, uncomment following code
-% \let\oldwidering\widering
-% \let\widering\undefined
-% \RequirePackage{yhmath}
-% \let\widering\oldwidering
-
-%%% use esvect pkg, uncomment following code
-% \RequirePackage{esvect}
+\let\oldwidering\widering
+\let\widering\undefined
+\RequirePackage{yhmath}
+\let\widering\oldwidering
+\RequirePackage{esvect}
 \DeclareSymbolFont{CMlargesymbols}{OMX}{cmex}{m}{n}
-\let\sumop\relax\let\prodop\relax
+\let\intop\relax\let\sumop\relax\let\ointop\relax\let\prodop\relax
 \DeclareMathSymbol{\sumop}{\mathop}{CMlargesymbols}{"50}
+\DeclareMathSymbol{\intop}{\mathop}{CMlargesymbols}{"52}
+\DeclareMathSymbol{\ointop}{\mathop}{CMlargesymbols}{"48}
 \DeclareMathSymbol{\prodop}{\mathop}{CMlargesymbols}{"51}
 }{\relax}
 
@@ -214,7 +210,7 @@
 
 \RequirePackage{enumerate}
 % list/itemize/enumerate setting
-\RequirePackage[shortlabels,inline]{enumitem}
+\RequirePackage[shortlabels]{enumitem}
 \setlist{nolistsep}
 
 % caption settings 
@@ -226,8 +222,6 @@
 \setlength{\abovedisplayskip}{3pt}
 \setlength{\belowdisplayskip}{3pt}
 \setcounter{tocdepth}{1}
-\RequirePackage[flushmargin]{footmisc}
-\setlength{\footnotesep}{12pt}
 }
 
 \ifdefstring{\ELEGANT@toc}{twocol}{
@@ -254,28 +248,25 @@
 
 %%中文结构名字
 \ifdefstring{\ELEGANT@lang}{cn}{
-	\renewcommand{\contentsname}{目\hspace{2em}录}
-	\renewcommand{\figurename}{图}
-	\renewcommand{\tablename}{表}
-	\renewcommand{\partname}{\color{structurecolor}}
-	\renewcommand{\thepart}{第\zhnumber{\arabic{part}}部分}
-	\renewcommand{\listfigurename}{插图目录}
-	\renewcommand{\listtablename}{表格目录}
-	\renewcommand{\bibname}{参考文献}
-	\renewcommand{\appendixname}{附录}
-	\renewcommand{\indexname}{索\hspace{2em}引}
-	\newcommand\figref[1]{\textbf{图}~\ref{#1}}
-	\newcommand\tabref[1]{\textbf{表}~\ref{#1}}
-	\renewcommand{\chaptername}{第 \thechapter\,章}
-	\ifdefstring{\ELEGANT@cite}{authoryear}{
-		\RequirePackage[authoryear]{gbt7714}
-	}{\relax}
-	\ifdefstring{\ELEGANT@cite}{numbers}{
-		\RequirePackage[numbers]{gbt7714}
-	}{\relax}
-	\ifdefstring{\ELEGANT@cite}{super}{
-		\RequirePackage[super]{gbt7714}
-	}{\relax}
+\renewcommand{\contentsname}{目\hspace{2em}录}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\partname}{\color{structurecolor}}
+\renewcommand{\thepart}{第\zhnumber{\arabic{part}}部分}
+\renewcommand{\listfigurename}{插图目录}
+\renewcommand{\listtablename}{表格目录}
+\renewcommand{\bibname}{参考文献}
+\renewcommand{\appendixname}{附录}
+\renewcommand{\indexname}{索\hspace{2em}引}
+\newcommand\figref[1]{\textbf{图}~\ref{#1}}
+\newcommand\tabref[1]{\textbf{表}~\ref{#1}}
+\renewcommand{\chaptername}{第 \thechapter\,章}
+\ifdefstring{\ELEGANT@cite}{authoryear}{
+	\RequirePackage[authoryear]{gbt7714}
+}{\relax}
+\ifdefstring{\ELEGANT@cite}{numbers}{
+	\RequirePackage[numbers]{gbt7714}
+}{\relax}
 }{\relax}
 \ifdefstring{\ELEGANT@lang}{en}{
 \newcommand\figref[1]{\textbf{Figure}~\ref{#1}}
@@ -318,12 +309,6 @@
 	headsep=4mm,
 	footskip=12mm
 }
-\ifdefstring{\ELEGANT@marginpar}{margintrue}{
-\geometry{
-	marginparwidth=5cm, marginparsep=5mm,
-	left=2cm,right=7cm,
-}
-}{\relax}
 }{\relax}
 
 \ifdefstring{\ELEGANT@device}{pad}{
@@ -388,7 +373,7 @@
 \ifdefstring{\ELEGANT@mode}{fancy}{
 \tcbset{
     common/.style={
-        fontupper=\ifdefstring{\ELEGANT@lang}{en}{\disableit{\itshape}}{\upshape\kaishu},
+        fontupper=\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\upshape\kaishu},
         lower separated=false,
         coltitle=white,
         colback=gray!5,
@@ -427,7 +412,7 @@
 
 \newtcbtheorem[auto counter,number within=chapter]{axiom}{
 	\ifdefstring{\ELEGANT@lang}{en}{Axiom}{公理}
-}{defstyle}{axm}
+}{defstyle}{def}
 
 \newtcbtheorem[auto counter,number within=chapter]{definition}{
 	\ifdefstring{\ELEGANT@lang}{en}{Definition}{定义}
@@ -460,7 +445,7 @@
 \newtheoremstyle{edefstyle}%
 {3pt}% Space above
 {3pt}% Space below 
-{\ifdefstring{\ELEGANT@lang}{en}{\disableit{\itshape}}{\upshape\kaishu}}% Body font
+{\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\upshape\kaishu}}% Body font
 {}% Indent amount
 {\bfseries\color{main}}% Theorem head font
 {}% Punctuation after theorem head
@@ -470,7 +455,7 @@
 \newtheoremstyle{ethmstyle}%
 {3pt}% Space above
 {3pt}% Space below 
-{\ifdefstring{\ELEGANT@lang}{en}{\disableit{\itshape}}{\upshape\kaishu}}% Body font
+{\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\upshape\kaishu}}% Body font
 {}% Indent amount
 {\bfseries\color{second}}% Theorem head font
 {}% Punctuation after theorem head
@@ -480,7 +465,7 @@
 \newtheoremstyle{eprostyle}%
 {3pt}% Space above
 {3pt}% Space below 
-{\ifdefstring{\ELEGANT@lang}{en}{\disableit{\itshape}}{\upshape\kaishu}}% Body font
+{\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\upshape\kaishu}}% Body font
 {}% Indent amount
 {\bfseries\color{third}}% Theorem head font
 {}% Punctuation after theorem head
@@ -528,11 +513,11 @@
 \setcounter{exam}{0}
 \renewcommand{\theexam}{\thechapter.\arabic{exam}}
 \newenvironment{example}[1][]{
- 		\refstepcounter{exam}\par\noindent\textbf{\color{main}{%
+ 		\refstepcounter{exam}\leavevmode\\*\noindent\textbf{\color{main}{%
  			\ifdefstring{\ELEGANT@lang}{en}{Example}{例}
  		}\theexam #1 \,}\rmfamily %
  	}{
- 		\par\medskip\ignorespacesafterend %
+		\leavevmode\\*\ignorespacesafterend %
  	}
 
 %% Exercise with counter
@@ -540,11 +525,11 @@
 \setcounter{exer}{0}
 \renewcommand{\theexer}{\thechapter.\arabic{exer}}
 \newenvironment{exercise}[1][]{
- 		\refstepcounter{exer}\par\noindent\makebox[-3pt][r]{\scriptsize\color{red!90}\HandPencilLeft\quad}\textbf{\color{main}{%
+ 		\refstepcounter{exer}\leavevmode\\*\noindent\makebox[-3pt][r]{\scriptsize\color{red!90}\HandPencilLeft\quad}\textbf{\color{main}{%
  			\ifdefstring{\ELEGANT@lang}{en}{Exercise}{练习}
  		}\theexer #1 \,}\rmfamily %
  	}{
- 		\par\medskip\ignorespacesafterend %
+		\leavevmode\\*\ignorespacesafterend %
  	}
 
 %% Exercise with counter
@@ -563,7 +548,7 @@
 
 \newenvironment{note}{\par\noindent{\makebox[0pt][r]{\scriptsize\color{red!90}\textdbend\quad}\textbf{\color{second}%
 	\ifdefstring{\ELEGANT@lang}{en}{Note}{注意}\,
-}}\ifdefstring{\ELEGANT@lang}{en}{\disableit{\itshape}}{\kaishu}}{\par}
+}}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}}{\par}
 
 \newenvironment{proof}{\par\noindent\textbf{\color{second}%
 	\ifdefstring{\ELEGANT@lang}{en}{Proof}{证明}\;
@@ -581,7 +566,7 @@
 }}{\par}
 \newenvironment{solution}{\par\noindent\textbf{\color{main}%
 	\ifdefstring{\ELEGANT@lang}{en}{Solution}{解}\;
-}\ifdefstring{\ELEGANT@lang}{en}{\disableit{\itshape}}{\kaishu}}{\vskip2ex\par}
+}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}}{\vskip2ex\par}
 \newenvironment{property}{\par\noindent\textbf{\color{third}%
 	\ifdefstring{\ELEGANT@lang}{en}{Property}{性质}\;
 }}{\par}
@@ -621,7 +606,7 @@
 \RequirePackage{adforn}
 \newenvironment{problemset}[1][\ifdefstring{\ELEGANT@lang}{en}{\textbf{\chaptername\, Exercise}}{\textbf{\chaptername\, 习题}}]{
 \begin{center}
-\ifdefstring{\ELEGANT@lang}{en}{\addcontentsline{toc}{section}{\texorpdfstring{\chaptername\,}{Chapter} Exercise} }{\addcontentsline{toc}{section}{\texorpdfstring{\chaptername\,}{章节}习题}}
+\ifdefstring{\ELEGANT@lang}{en}{\addcontentsline{toc}{section}{\chaptername\, Exercise} }{\addcontentsline{toc}{section}{\chaptername\, 习题}}
 \textcolor{structurecolor}{\Large\bfseries\adftripleflourishleft~#1~\adftripleflourishright}
 \end{center}
 \begin{enumerate}[label=\textcolor{structurecolor}{\arabic*.}]}{%
@@ -644,32 +629,16 @@
 \RequirePackage{lastpage}
 \fancyhf{}
 
+\if@twoside
+\fancyhead[EL,OR]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}--\thepage/\pageref*{LastPage}--}
+\fancyhead[ER]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\leftmark{}}
+\fancyhead[OL]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\rightmark{}}
+\else
+\fancyhead[R]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}--\thepage/\pageref*{LastPage}--}
+\fancyhead[L]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\rightmark}
+\fi
 
-\ifdefstring{\ELEGANT@base}{hide}{
-	\if@twoside
-	\fancyhead[ER,OR]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\rightmark}
-	\fancyhead[El,OL]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\leftmark}
-	\else
-	\fancyhead[L]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\leftmark}
-	\fancyhead[R]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\rightmark}
-	\fancyfoot[c]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}--\;\thepage/\pageref*{LastPage}\;--}
-	\fi
-}{\relax}
-
-
-\ifdefstring{\ELEGANT@base}{show}{
-	\fancyfoot[c]{\catcode`\$=3\relax\base{structurecolor}{88}}
-	\if@twoside
-	\fancyhead[ER,OL]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}--\;\thepage/\pageref*{LastPage}\;--}
-	\fancyhead[EL]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\leftmark}
-	\fancyhead[OR]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\rightmark}
-	\else
-	\fancyhead[R]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}--\;\thepage/\pageref*{LastPage}\;--}
-	\fancyhead[L]{\color{structurecolor}\ifdefstring{\ELEGANT@lang}{en}{\itshape}{\kaishu}\leftmark}
-	\fi
-}{\relax}
-
-
+% \fancyfoot[c]{\ifdefstring{\ELEGANT@base}{hide}{}{\catcode`\$=3\relax\base{structurecolor}{88}}}
 \renewcommand{\headrule}{\color{structurecolor}\hrule width\textwidth}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{1pt}
@@ -772,9 +741,9 @@
 	breaklines=true,
 	keywordstyle=\color{winered},
 	commentstyle=\color{gray},
-	emph={elegantpaper,fontenc,fontspec,xeCJK,FiraMono,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm,BibTeX,device,color,mode,lang,amsthm,tcolorbox,titlestyle,cite,marginnote,ctex,listings,base},
+	emph={elegantpaper,fontenc,fontspec,xeCJK,FiraMono,xunicode,newtxmath,figure,fig,image,img,table,itemize,enumerate,newtxtext,newtxtt,ctex,microtype,description,times,newtx,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm,BibTeX,device,color,mode,lang,amsthm,tcolorbox,titlestyle,cite,marginnote,ctex,listings},
 	emphstyle={\color{frenchplum}},
-	morekeywords={DeclareSymbolFont,SetSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle,keywords,definecolor,extrainfo,logo,cover,subtitle,appendix,chapter,hypersetup,mainmatter,tableofcontents,elegantpar,heiti,kaishu,lstset,pagecolor,zhnumber,marginpar,part,equote,marginnote},
+	morekeywords={DeclareSymbolFont,SetSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle,keywords,definecolor,extrainfo,logo,cover,subtitle,appendix,chapter,hypersetup,mainmatter,tableofcontents,elegantpar,numbers,authoryear,heiti,kaishu,lstset,pagecolor,zhnumber,marginpar,part,equote},
 	frame=single,
 	tabsize=2,
 	rulecolor=\color{structurecolor},
@@ -782,6 +751,6 @@
 	columns=flexible,
 	% backgroundcolor=\color{lightgrey}
 }
-\newcommand\bmmax{0}
+
 \RequirePackage{bm}
 
