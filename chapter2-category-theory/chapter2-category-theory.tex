@@ -59,13 +59,13 @@
     \item 对于任意可复合的元素对$(\phi,\psi)$，$F(\phi\circ_\mathcal{A}\psi)=F(\phi)\circ_\mathcal{B}F(\psi)$。
 \end{enumerate}
 \end{definition}
-我们仅考虑域和陪域为上方列出的真类范畴的具有$F_{\opn{Ob}}^{\text{PrCl}}$的函子。我们考虑的大部分范畴和函子都是\textbf{数学对象}（可用ZFC公理化集合论描述的对象）。注意态射的对应总为映射。注意若函子对象关系的类型（映射或关联）明确，我们可以将其省略。另外我们也会在语义明确时省略下标$\opn{Ob}$和$\opn{Mor}$。任何范畴$\mathcal{A}$都有一个显然的单位函子$\opn{id}_\mathcal{A}$，同时对于两个函子$F:\mathcal{A}\to\mathcal{B}$和$G:\mathcal{B}\to\mathcal{C}$，我们可以定义它们的复合。
+我们仅考虑域和陪域为上方列出的真类范畴的具有$F_{\opn{Ob}}^{\text{PrCl}}$的函子。我们考虑的大部分范畴和函子都是\textbf{数学对象}（可用ZFC公理化集合论描述的对象）。注意若函子对象关系的类型（映射或关联）明确，我们可以将其省略。另外我们也会在语义明确时省略下标$\opn{Ob}$和$\opn{Mor}$。任何范畴$\mathcal{A}$都有一个显然的单位函子$\opn{id}_\mathcal{A}$，同时对于两个函子$F:\mathcal{A}\to\mathcal{B}$和$G:\mathcal{B}\to\mathcal{C}$，我们可以定义它们的复合。
 
 \textbf{TODO} opposite category and contravariant functor
 
 \textbf{TODO} natural transformation
 
-\subsection{$\opn{Hom}$函子和Yoneda定理}
+\subsection{$\opn{Hom}$函子和Yoneda引理}
 \begin{definition}{$\opn{Hom}$函子}{hom_functor_category}
 若$\mathcal{C}$是一个局部集合范畴，对于每个$A\in\mathcal{C}$，记$A$-协变$\opn{Hom}$函子为$h^A=\opn{Hom}(A,-):\mathcal{C}\to\mathbf{Set}$，其定义如下：
 \begin{itemize}
@@ -96,6 +96,39 @@ h_B(X) \arrow[rrr, "h_{\text{ct}}(\phi)(x)"]\arrow[ddd, "h_B(\psi)"'] & {} & {} 
 $$
 \end{definition}
 如上定义的$\mathbf{Set}^{\mathcal{C}^\text{op}}$在代数几何中也被记为$\mathbf{PSh}(\mathcal{C})$。
+\begin{exercise}
+请验证$h^{-}:\mathcal{C}\to\mathbf{Set}^\mathcal{C}$和$h_{-}:\mathcal{C}\to\mathbf{Set}^{\mathcal{C}^\text{op}}$为函子。提示：观察上述定义，可以注意到前者为逆变函子，后者为协变函子。
+\end{exercise}
+
+\begin{theorem}{Yoneda引理}{yoneda_lemma}
+对于任意局部集合范畴$\mathcal{C}$和$A,B\in\opn{Ob}(\mathcal{C})$，
+\begin{enumerate}
+\item 给定协变函子$F:\mathcal{C}\overset{\text{co}}{\to}\mathbf{Set}$，存在双射$\opn{Nat}(h^A,F)\simeq F(A)$；
+\item 给定逆变函子$G:\mathcal{C}\overset{\text{ct}}{\to}\mathbf{Set}$，存在双射$\opn{Nat}(h_B,G)\simeq G(B)$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+对于自然变换$\Phi:h^A\Rightarrow F$，我们将它映射到$u=m(\Psi)=\Phi_A(\opn{id}_A)$（注意此处$\Phi_A$是$\mathbf{Set}$中$h^A(A)\to F(A)$的态射，即一个映射）；对于$v\in F(A)$，将它映射到如$\Psi_X(f:\opn{Mor}_\mathcal{C}(A,X))=F(f)(v)$定义的自然变换$n(v)=\Psi$。以下练习证明了$m\circ n=\opn{id}$和$n\circ m=\opn{id}$，即得所需双射。另一部分的证明留作练习。
+\end{proof}
+\begin{exercise}
+请尝试证明在上述证明中，$m\circ n=\opn{id}$和$n\circ m=\opn{id}$。
+\end{exercise}
+\begin{solution}
+\begin{itemize}
+\item $m\circ n$：若$v\in F(A)$，则$n(v)=\Psi$，其中$\Psi_X(f)=F(f)(v)$，我们有$m(\Psi)=\Psi_A(\opn{id}_A)=F(id_A)(v)=id_{F(A)}(v)=v$；
+\item $n\circ m$：若$\Phi\in\opn{Nat}(h^A,F)$，则下图对任意$\phi:X'\to Y'$和$\psi:A\to X'$交换，
+$$
+\begin{tikzcd}
+    h^A(X') \arrow[r, "\Phi_X"] \arrow[d, "h^A(\phi)"'] & F(X') \arrow[d, "F(\phi)"] \\
+    h^A(Y') \arrow[r, "\Phi_Y"']                        & F(Y')                     
+\end{tikzcd}
+$$
+即$F(\phi)(\Phi_{X'}(\psi))=\Phi_{Y'}(h^A(\phi)(\psi))$成立。取$X'=A,\,Y'=X,\,\phi=f:A\to X,\,\psi=\opn{id}_A:A\to A$，则有$F(f)(\Phi_A(\opn{id}_A))=\Phi_X(h^A(f)(\opn{id}_A))=\Phi_X(f\circ\opn{id}_A)=\Phi_X(f)$。此时计算$(n\circ m)(\Phi)$，$m(\Phi)=\Phi_A(\opn{id}_A)=u$，$n(u)=\Psi$，其中$\Psi_X(f)=F(f)(\Phi_A(\opn{id}_A))$。据前文，有$\Phi_X(f)=F(f)(\Phi_A(\opn{id}_A))=\Psi_X(f)$，即得$\Psi=\Phi$。
+\end{itemize}
+\end{solution}
+\begin{exercise}
+模仿上述证明，证明Yoneda引理的第二部分。
+\end{exercise}
 
 \section{范畴论构造}
 \section{泛性质}
